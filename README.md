@@ -8,8 +8,10 @@ This project sets up following AWS resources:
 - public and private subnets, 
 - route tables, 
 - Internet Gateway, 
-- NAT gateways (1 per public subnet)
-- EIPs (1 per per public subnet).
+- NAT gateways (1 per public subnet),
+- EIPs (1 per per public subnet),
+- SSH key using provided pubkey,
+- AWS bastion.
 
 The repository leverages AWS VPC Terraform module. See https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/3.14.0 for more details.
 
