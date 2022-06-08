@@ -25,6 +25,10 @@ Terraform backend configuration is provided as configuration file. The repositor
 
 Repository ships with predefined variables file `dev.tfvars` that allow for non-interactive execution of `plan` and `apply` commands.
 
+## SSH key
+
+Public SSH key is expected at `./secrets/ssh-key.pub`. It is added to `authorized_keys` on bastion host.
+
 ### Running in CI
 
 Run with `-input=false and -var-file` switches: `terraform plan -input=false -var-file=dev.tfvars`.
