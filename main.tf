@@ -4,11 +4,13 @@ terraform {
   backend "s3" {}
 }
 
-locals {
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-    Owner       = var.extra_tag_owner
+provider "aws" {
+  default_tags {
+    tags = {
+      Terraform   = "true"
+      Environment = "dev"
+      Owner       = var.extra_tag_owner
+    }
   }
 }
 
@@ -32,8 +34,6 @@ module "vpc" {
   public_subnet_tags = {
     Tier = "Public"
   }
-
-  tags = local.tags
 }
 
 module "aws_key_pair" {
@@ -57,10 +57,4 @@ module "bastion" {
   key_name                    = module.aws_key_pair.key_name
   vpc_id                      = module.vpc.vpc_id
   associate_public_ip_address = true
-
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-    Owner       = var.extra_tag_owner
-  }
 }
